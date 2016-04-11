@@ -1,5 +1,7 @@
 # DragDropTouch
 
+Polyfill that enables HTML5 drag drop support on mobile (touch) devices.
+
 The HTML5 specification includes support for drag and drop operations. 
 Unfortunately, most mobile browsers do not implement it, so applications
 that rely on HTML5 drag and drop have reduced functionality when running
@@ -12,8 +14,7 @@ do on the desktop.
 
 ## Demo
 
-- [drag drop](http://timruffles.github.io/ios-html5-drag-drop-shim/demo/)
-- [drag drop with enter leave support](http://timruffles.github.io/ios-html5-drag-drop-shim/enter-leave/)
+- [Run Demo](http://bernardo-castilho.github.io/DragDropTouch/demo/index.htm)
 
 The demo should work on desktop as well as on mobile devices, including
 iPads and Android tablets.
@@ -64,3 +65,4 @@ Thanks also to Chris Wilson and Paul Kinlan for their article on mouse and touch
 ## License
 
 [MIT License](LICENSE)
+
