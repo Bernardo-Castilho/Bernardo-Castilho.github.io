@@ -7,17 +7,22 @@
 
         <!-- create controls after page has loaded -->
         <script>
-    		onload = function() {
-    		    var e = document.getElementById('theGrid');
+            onload = function () {
+
+                // create some data
+                var data = [],
+                    names = 'Paul,Alex,Phil,Bob,Dan,Joe,Bob,Tim,Sly,Todd'.split(',');
+                for (var i = 0; i < 1000; i++) {
+                    data.push({
+                        id: i,                      
+                        name: names[i % names.length],
+                        age: Math.round(10 + Math.random() * 100)
+                    })
+                }
+
+                // show the data in a grid
     		    var grid = new wijmo.grid.FlexGrid('#theGrid', {
-    		        itemsSource: [
-                        { id: 0, name: 'Paul', age: 54 },
-                        { id: 1, name: 'Alex', age: 53 },
-                        { id: 2, name: 'Phil', age: 64 },
-                        { id: 3, name: 'Dan',  age: 47 },
-                        { id: 4, name: 'Joe',  age: 76 },
-                        { id: 5, name: 'Bob',  age: 64 }
-    		        ]
+    		        itemsSource: data
     		    });
 		    }
 	    </script>
@@ -45,7 +50,7 @@
 
         <p>
             Here is a <b>FlexGrid</b> control created using the code in the bundle:</p>
-	    <div id="theGrid"></div>
+	    <div id="theGrid" style="max-height:300px"></div>
 
     </body>
 </html>
