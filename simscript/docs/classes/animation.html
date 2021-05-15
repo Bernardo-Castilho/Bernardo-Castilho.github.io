@@ -75,10 +75,20 @@
 					<p>The animations are shown in a host element defined in the
 						constructor. The host element can be regular <strong>div</strong> or
 					<strong>svg</strong> elements.</p>
-					<p>Animations hosted in <strong>div</strong> elements use absolutely positioned
-					elements (often <strong>img</strong>) to represent entities.</p>
-					<p>Animations hosted in <strong>svg</strong> elements use SVG (often <em>g</em>)
-					elements to represent entities.</p>
+					<p>Animations may be in 2D or 3D.</p>
+					<p>2D animations may be hosted in regular <strong>div</strong> elements.
+						In this case, they use absolutely positioned elements
+					(such as <strong>img</strong>) to represent entities.</p>
+					<p>2D animations may also be hosted in <strong>svg</strong> elements.
+						In this case, they use SVG (often <em>g</em>) elements to represent
+						entities. You can see a sample here:
+					<a href="https://stackblitz.com/edit/typescript-ehhn4e?file=index.html">Animated Crosswalk (SVG)</a>.</p>
+					<p>3D animations may be hosted in <a href="https://aframe.io">A-Frame</a>
+						elements. <strong>A-Frame</strong> is a 3D/VR framework that makes it easy
+						to create 3D/VR animations. You can see an example here:
+					<a href="https://stackblitz.com/edit/typescript-pmkehn?file=index.html">Animation Options (A-Frame)</a>.</p>
+					<p>3D animations may also be hosted in <a href="https://www.x3dom.org/">X3DOM</a>
+					elements. <strong>X3DOM</strong> is the latest W3C standard for 3D content.</p>
 					<p><a href="queue.html">Queue</a> positions are defined by elements in the animation
 					host element, as specified by the <a href="animation.html#queues">queues</a> property.</p>
 					<p><a href="entity.html">Entity</a> objects are represented by HTML elements defined
@@ -112,10 +122,11 @@
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="animation.html#animatetoqueueend" class="tsd-kind-icon">animate<wbr>ToQueue<wbr>End</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="animation.html#getentityhtml" class="tsd-kind-icon">get<wbr>Entity<wbr>Html</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="animation.html#hostelement" class="tsd-kind-icon">host<wbr>Element</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="animation.html#isaframe" class="tsd-kind-icon">isAFrame</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="animation.html#issvg" class="tsd-kind-icon">is<wbr>Svg</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="animation.html#hosttag" class="tsd-kind-icon">host<wbr>Tag</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="animation.html#isthreed" class="tsd-kind-icon">is<wbr>ThreeD</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="animation.html#queues" class="tsd-kind-icon">queues</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="animation.html#rotateentities" class="tsd-kind-icon">rotate<wbr>Entities</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="animation.html#sceneelement" class="tsd-kind-icon">scene<wbr>Element</a></li>
 							</ul>
 						</section>
 					</div>
@@ -133,7 +144,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/73194f1/simscript/animation.ts#L83">animation.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/a1deca5/simscript/animation.ts#L97">animation.ts:97</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -180,7 +191,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/73194f1/simscript/animation.ts#L164">animation.ts:164</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/a1deca5/simscript/animation.ts#L193">animation.ts:193</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -196,7 +207,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/73194f1/simscript/animation.ts#L167">animation.ts:167</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/a1deca5/simscript/animation.ts#L196">animation.ts:196</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -228,7 +239,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/73194f1/simscript/animation.ts#L138">animation.ts:138</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/a1deca5/simscript/animation.ts#L167">animation.ts:167</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -242,7 +253,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/73194f1/simscript/animation.ts#L141">animation.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/a1deca5/simscript/animation.ts#L170">animation.ts:170</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -271,7 +282,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/73194f1/simscript/animation.ts#L117">animation.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/a1deca5/simscript/animation.ts#L137">animation.ts:137</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -284,45 +295,43 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="isaframe" class="tsd-anchor"></a>
-					<h3>isAFrame</h3>
+					<a name="hosttag" class="tsd-anchor"></a>
+					<h3>host<wbr>Tag</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> isAFrame<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hostTag<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/73194f1/simscript/animation.ts#L131">animation.ts:131</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/a1deca5/simscript/animation.ts#L143">animation.ts:143</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets a value that indicates whether the animation&#39;s
-									host element is an A-Frame scene.</p>
+									<p>Gets the host element&#39;s tagName.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="issvg" class="tsd-anchor"></a>
-					<h3>is<wbr>Svg</h3>
+					<a name="isthreed" class="tsd-anchor"></a>
+					<h3>is<wbr>ThreeD</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> isSvg<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> isThreeD<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/73194f1/simscript/animation.ts#L124">animation.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/a1deca5/simscript/animation.ts#L149">animation.ts:149</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets a value that indicates whether the animation&#39;s
-									host element is an SVG element.</p>
+									<p>Gets a value that determines whether this animation is a 3D animation.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -340,7 +349,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/73194f1/simscript/animation.ts#L175">animation.ts:175</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/a1deca5/simscript/animation.ts#L204">animation.ts:204</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -354,7 +363,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/73194f1/simscript/animation.ts#L178">animation.ts:178</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/a1deca5/simscript/animation.ts#L207">animation.ts:207</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -384,7 +393,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/73194f1/simscript/animation.ts#L151">animation.ts:151</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/a1deca5/simscript/animation.ts#L180">animation.ts:180</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -400,7 +409,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/73194f1/simscript/animation.ts#L154">animation.ts:154</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/a1deca5/simscript/animation.ts#L183">animation.ts:183</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -418,6 +427,31 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="sceneelement" class="tsd-anchor"></a>
+					<h3>scene<wbr>Element</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> sceneElement<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/a1deca5/simscript/animation.ts#L160">animation.ts:160</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a reference to the scene element.</p>
+								</div>
+								<p>In most cases, the scene element is the host element.
+									If the host is an X3D element, the scene element is
+								the host&#39;s SCENE child element.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -454,16 +488,19 @@
 								<a href="animation.html#hostelement" class="tsd-kind-icon">host<wbr>Element</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-								<a href="animation.html#isaframe" class="tsd-kind-icon">isAFrame</a>
+								<a href="animation.html#hosttag" class="tsd-kind-icon">host<wbr>Tag</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-								<a href="animation.html#issvg" class="tsd-kind-icon">is<wbr>Svg</a>
+								<a href="animation.html#isthreed" class="tsd-kind-icon">is<wbr>ThreeD</a>
 							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="animation.html#queues" class="tsd-kind-icon">queues</a>
 							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="animation.html#rotateentities" class="tsd-kind-icon">rotate<wbr>Entities</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="animation.html#sceneelement" class="tsd-kind-icon">scene<wbr>Element</a>
 							</li>
 						</ul>
 					</li>
