@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.17e50649.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SimScript</title>
+
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+
+    <script src="http://www.x3dom.org/download/x3dom.js"></script> 
+    <link rel='stylesheet' href="http://www.x3dom.org/download/x3dom.css" >
+
+<script type="module" crossorigin src="/assets/index.810713fe.js"></script>
+  <link rel="stylesheet" href="/assets/index.a4efebbf.css">
+</head>
+
+<body>
+    <h1>
+        SimScript
+    </h1>
+    <p>
+        A Discrete Event Simulation library in TypeScript.
+    </p>
+    <p>
+        <b>SimScript</b> uses JavaScript's
+        <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await">async/await</a>
+        features to make simulations easy to write and understand.
+    </p>
+    <p>
+        <b>SimScript</b> simulations are built using these classes:
+    </p>
+    <ul>
+        <li>
+            <b>Simulation</b>:
+            Simulations create resources (queues) and entities which execute an async <b>script</b>
+            method that describes the actions each entity should perform.
+        </li>
+        <li>
+            <b>Queues</b>:
+            Queues represent resources that can be seized and released by entities. 
+            Queues keep track of their utilization and may constrain the flow of entities through
+            the simulation.
+        </li>
+        <li>
+            <b>Entities</b>:
+            Entities represent active elements that execute scripts. Scripts are JavaScript methods that
+            contain instructions for entities. Typical actions are entering and leaving queues,
+            going through delays, and sending or waiting for signals.
+        </li>
+        <li>
+            <b>Animations</b>:
+            Animations use HTML or SVG elements to render entities waiting in queues or in transit 
+            between queues.
+            Animations are useful for presentations and also for debugging simulations.
+        </li>
+    </ul>
+    
+</body>
+
+</html>
