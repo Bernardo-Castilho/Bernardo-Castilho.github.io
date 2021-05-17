@@ -61,36 +61,45 @@
 				<a href="#simscript" id="simscript" style="color: inherit; text-decoration: none;">
 					<h1>SimScript</h1>
 				</a>
-				<p>A Discrete Event Simulation Library in TypeScript.</p>
-				<p>For details, see the
-				<a href="https://bernardo-castilho.github.io/simscript/docs/">API Documentation</a>.</p>
+				<p>A Discrete Event Simulation Library in TypeScript with
+				support for 2D and 3D animations.</p>
+				<p>This <a href="https://bernardo-castilho.github.io/simscript/dist/index.html">SimScript Sample</a>
+				shows several simulations, including 2D and 3D animations.</p>
+				<p>The <a href="https://bernardo-castilho.github.io/simscript/docs/">SimScript API Documentation</a>
+				describes all the classes in the <strong>SimScript</strong> library and their properties.</p>
 				<p><strong>SimScript</strong> uses JavaScript&#39;s
 					<a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await">async/await</a>
 				features to make simulations easy to write and understand.</p>
 				<p><strong>SimScript</strong> simulations are built using these classes:</p>
-				<a href="#simulation" id="simulation" style="color: inherit; text-decoration: none;">
-					<h2>Simulation</h2>
+				<a href="#simulation-class" id="simulation-class" style="color: inherit; text-decoration: none;">
+					<h2>Simulation Class</h2>
 				</a>
-				<p>Simulations create resources (queues) and entities which execute an async <strong>script</strong>
-				method that describes the actions each entity should perform.</p>
-				<a href="#queues" id="queues" style="color: inherit; text-decoration: none;">
-					<h2>Queues</h2>
-				</a>
-				<p>Queues represent resources that can be seized and released by entities.
-					Queues keep track of their utilization and may constrain the flow of entities
-				through the simulation.</p>
-				<a href="#entities" id="entities" style="color: inherit; text-decoration: none;">
-					<h2>Entities</h2>
+				<p>Simulations create resources (queues) and entities which execute an async
+				<strong>script</strong> method that describes the actions each entity should perform.</p>
+				<p>The <strong>Simulation</strong> class is abstract. In most cases, you will create a class
+				that extends it to create the queues and entities you need.</p>
+				<a href="#entity-class" id="entity-class" style="color: inherit; text-decoration: none;">
+					<h2>Entity Class</h2>
 				</a>
 				<p>Entities represent active elements that execute scripts. Scripts are async
 					methods that contain instructions for entities.
-					Typical actions include entering and leaving <strong>queues</strong>, going through <strong>delays</strong>,
-				and sending or waiting for <strong>signals</strong>.</p>
-				<a href="#animations" id="animations" style="color: inherit; text-decoration: none;">
-					<h2>Animations</h2>
+					Typical actions include entering and leaving <strong>queues</strong>, going through
+				<strong>delays</strong>, and sending or waiting for <strong>signals</strong>.</p>
+				<p>The <strong>Entity</strong> class is abstract. In most cases, you will create one of more
+				classes that extend it to perform the actions required by your simulations.</p>
+				<a href="#queue-class" id="queue-class" style="color: inherit; text-decoration: none;">
+					<h2>Queue Class</h2>
+				</a>
+				<p>Queues represent resources that can be seized and released by entities.
+					Queues keep track of their utilization and may constrain the flow of
+				entities through the simulation.</p>
+				<a href="#animation-class" id="animation-class" style="color: inherit; text-decoration: none;">
+					<h2>Animation Class</h2>
 				</a>
 				<p>Animations use HTML or SVG elements to render entities waiting in queues
 				or in transit between queues.</p>
+				<p>Animations may also use <a href="https://aframe.io">A-Frame</a> to render entities
+				in 3D/VR.</p>
 				<p>Animations are useful for presentations and also for debugging simulations.</p>
 				<a href="#styles" id="styles" style="color: inherit; text-decoration: none;">
 					<h2>Styles</h2>
@@ -135,21 +144,27 @@
 				</a>
 				<p>The links below show some samples of <strong>SimScript</strong> simulations:</p>
 				<ul>
-					<li><p><a href="https://stackblitz.com/edit/typescript-efht9t?file=index.ts">Barbershop</a>
-							Classic GPSS simulation example:
+					<li><p><a href="https://stackblitz.com/edit/typescript-efht9t?file=index.ts">Barbershop</a><br>  Classic GPSS simulation example:
 						customers arrive at a barbershop, wait until the barber is available, get serviced, and leave.</p>
 					</li>
-					<li><p><a href="https://stackblitz.com/edit/typescript-xbntrv?file=index.ts">M/M/C</a>
-						Classic M/M/C queueing system. Entities arrive, are served by one of C servers, and leave.</p>
+					<li><p><a href="https://stackblitz.com/edit/typescript-xbntrv?file=index.ts">M/M/C</a><br>  Classic M/M/C queueing system. Entities arrive, are served by one of C servers, and leave.</p>
 					</li>
-					<li><p><a href="https://stackblitz.com/edit/typescript-nwknjs?file=index.ts">RandomVar</a>
-						Demonstrates some of the random variables implemented in <strong>SimScript</strong>.</p>
+					<li><p><a href="https://stackblitz.com/edit/typescript-nwknjs?file=index.ts">RandomVar</a><br>  Demonstrates some of the random variables implemented in <strong>SimScript</strong>.</p>
 					</li>
-					<li><p><a href="https://stackblitz.com/edit/typescript-nq3vvd?file=index.ts">Crosswalk</a>
-						Uses the <strong>waitSignal</strong> and <strong>sendSignal</strong> methods to simulate a crosswalk.</p>
+					<li><p><a href="https://stackblitz.com/edit/typescript-nq3vvd?file=index.ts">Crosswalk</a><br>  Uses the <strong>waitSignal</strong> and <strong>sendSignal</strong> methods to simulate a crosswalk.</p>
 					</li>
-					<li><p><a href="https://stackblitz.com/edit/typescript-ehhn4e?file=index.ts">Animated Crosswalk</a>
-						Uses the <strong>Animation</strong> class to show an animated version of the <strong>Crosswalk</strong> simulation.</p>
+					<li><p><a href="https://stackblitz.com/edit/typescript-395kik?file=index.ts">Animated Crosswalk (SVG)</a><br>  Uses the <strong>Animation</strong> class to show an SVG-based animated version of the <strong>Crosswalk</strong> simulation.</p>
+					</li>
+					<li><p><a href="https://stackblitz.com/edit/typescript-ehhn4e?file=index.ts">Animated Crosswalk (X3DOM)</a><br>  Uses the <strong>Animation</strong> class to show an X3DOM-based animated version of the <strong>Crosswalk</strong> simulation.</p>
+					</li>
+					<li><p><a href="https://stackblitz.com/edit/typescript-3zcuw1?file=animation-options.ts">Animation Options (SVG)</a><br>  Uses an SVG-based 2D animation to show the effect of some
+						<strong>Animation</strong> and <strong>Simulation</strong> properties.</p>
+					</li>
+					<li><p><a href="https://stackblitz.com/edit/typescript-pmkehn?file=animation-options.ts">Animation Options (A-Frame)</a><br>  Uses an <a href="https://aframe.io">A-Frame</a>-based 3D animation to show the effect of some
+						<strong>Animation</strong> and <strong>Simulation</strong> properties.</p>
+					</li>
+					<li><p><a href="https://stackblitz.com/edit/typescript-oncuqe?file=animation-options.ts">Animation Options (X3DOM)</a><br>  Uses an <a href="https://www.x3dom.org/">X3DOM</a>-based 3D animation to show the effect of some
+						<strong>Animation</strong> and <strong>Simulation</strong> properties.</p>
 					</li>
 				</ul>
 			</div>
@@ -234,6 +249,9 @@
 						<a href="modules.html#assert" class="tsd-kind-icon">assert</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="modules.html#bind" class="tsd-kind-icon">bind</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="modules.html#clamp" class="tsd-kind-icon">clamp</a>
 					</li>
 					<li class=" tsd-kind-function">
@@ -261,7 +279,6 @@
 				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
 				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
 			</ul>

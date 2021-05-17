@@ -68,24 +68,35 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Class used to adds animations to <a href="simulation.html">Simulation</a> objects.</p>
+						<p>Class used to add animations to <a href="simulation.html">Simulation</a> objects.</p>
 					</div>
 					<p>The <a href="animation.html">Animation</a> class adds animations to existing
 					<a href="simulation.html">Simulation</a> objects.</p>
-					<p>The animations are shown in a host element defined in the
-					constructor.</p>
-					<p>Animation host elements can be regular <strong>div</strong> or <strong>svg</strong>
-					elements.</p>
-					<p>Animations hosted in <strong>div</strong> elements use absolutely positioned
-					elements (often <strong>img</strong>) to represent entities.</p>
-					<p>Animations hosted in <strong>svg</strong> elements use SVG (often <em>g</em>)
-					elements to represent entities.</p>
-					<p><a href="queue.html">Queue</a> positions are defined by elements in the animation
-					host element, as specified by the <a href="animation.html#queues">queues</a> property.</p>
-					<p><a href="entity.html">Entity</a> objects are represented by HTML elements defined
-						by the <a href="animation.html#getentityhtml">getEntityHtml</a> function. Entities are shown while
-						in animated queues (see <a href="entity.html#enterqueue">Entity.enterQueue</a>) and while in
-					transit between animated queues (see <a href="entity.html#move">Entity.move</a>).</p>
+					<p>Animations are shown in a host element defined in the constructor.</p>
+					<p>Animations may be in 2D or 3D.</p>
+					<p>2D animations may be hosted in regular <strong>div</strong> elements.
+						In this case, they use absolutely positioned elements (such as <strong>img</strong>)
+					to represent entities.</p>
+					<p>2D animations may also be hosted in <strong>svg</strong> elements.
+						In this case, they use SVG (often <em>g</em>) elements to represent entities.
+						You can see a sample here:
+					<a href="https://stackblitz.com/edit/typescript-395kik?file=index.ts">Animated Crosswalk (SVG)</a>.</p>
+					<p>3D animations may be hosted in <a href="https://aframe.io">A-Frame</a> elements.
+						<strong>A-Frame</strong> is a 3D/VR framework that makes it easy to create 3D/VR animations.
+						You can see an example here:
+					<a href="https://stackblitz.com/edit/typescript-pmkehn?file=index.ts">Animation Options (A-Frame)</a>.</p>
+					<p>3D animations may also be hosted in <a href="https://www.x3dom.org/">X3DOM</a>
+						elements. <strong>X3DOM</strong> is the latest W3C standard for 3D content.
+						You can see examples here:
+						<a href="https://stackblitz.com/edit/typescript-ehhn4e?file=index.ts">Animated Crosswalk (X3DOM)</a>
+						and
+					<a href="https://stackblitz.com/edit/typescript-oncuqe?file=index.ts">Animation Options (X3DOM)</a>.</p>
+					<p>Entities are shown while in animated queues (see the <a href="entity.html#enterqueue">Entity.enterQueue</a> method)
+					and while in transit between animated queues (see the <a href="entity.html#delay">Entity.delay</a> method).</p>
+					<p><a href="queue.html">Queue</a> positions are defined by elements in the animation host element,
+					as specified when you set the <a href="animation.html#queues">queues</a> property.</p>
+					<p><a href="entity.html">Entity</a> objects are represented by elements whose appearance is specified by
+					the <a href="animation.html#getentityhtml">getEntityHtml</a> function.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -107,31 +118,22 @@
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="animation.html#_entities" class="tsd-kind-icon">_entities</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="animation.html#_getentityhtml" class="tsd-kind-icon">_get<wbr>Entity<wbr>Html</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="animation.html#_height" class="tsd-kind-icon">_height</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="animation.html#_host" class="tsd-kind-icon">_host</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="animation.html#_lastupdate" class="tsd-kind-icon">_last<wbr>Update</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="animation.html#_queues" class="tsd-kind-icon">_queues</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="animation.html#_sim" class="tsd-kind-icon">_sim</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="animation.html#_svg" class="tsd-kind-icon">_svg</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="animation.html#_width" class="tsd-kind-icon">_width</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="animation.html#animatetoqueueend" class="tsd-kind-icon">animate<wbr>ToQueue<wbr>End</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="animation.html#getentityhtml" class="tsd-kind-icon">get<wbr>Entity<wbr>Html</a></li>
-								<li class="tsd-kind-set-signature tsd-parent-kind-class"><a href="animation.html#queues" class="tsd-kind-icon">queues</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="animation.html#hostelement" class="tsd-kind-icon">host<wbr>Element</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="animation.html#hosttag" class="tsd-kind-icon">host<wbr>Tag</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="animation.html#isthreed" class="tsd-kind-icon">is<wbr>ThreeD</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="animation.html#queues" class="tsd-kind-icon">queues</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="animation.html#rotateentities" class="tsd-kind-icon">rotate<wbr>Entities</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="animation.html#sceneelement" class="tsd-kind-icon">scene<wbr>Element</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="animation.html#_getanimationentity" class="tsd-kind-icon">_get<wbr>Animation<wbr>Entity</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="animation.html#_timenowchanged" class="tsd-kind-icon">_time<wbr>Now<wbr>Changed</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="animation.html#updatedisplay" class="tsd-kind-icon">update<wbr>Display</a></li>
 							</ul>
 						</section>
 					</div>
@@ -149,7 +151,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/404f677/simscript/animation.ts#L67">animation.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/133bbbb/simscript/animation.ts#L98">animation.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -184,100 +186,55 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="_entities" class="tsd-anchor"></a>
-					<h3>_entities</h3>
-					<div class="tsd-signature tsd-kind-icon">_entities<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AnimationEntity</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/404f677/simscript/animation.ts#L64">animation.ts:64</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="_getentityhtml" class="tsd-anchor"></a>
-					<h3>_get<wbr>Entity<wbr>Html</h3>
-					<div class="tsd-signature tsd-kind-icon">_get<wbr>Entity<wbr>Html<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/404f677/simscript/animation.ts#L65">animation.ts:65</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="_height" class="tsd-anchor"></a>
-					<h3>_height</h3>
-					<div class="tsd-signature tsd-kind-icon">_height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/404f677/simscript/animation.ts#L62">animation.ts:62</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="_host" class="tsd-anchor"></a>
-					<h3>_host</h3>
-					<div class="tsd-signature tsd-kind-icon">_host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Element</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/404f677/simscript/animation.ts#L60">animation.ts:60</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="_lastupdate" class="tsd-anchor"></a>
-					<h3>_last<wbr>Update</h3>
-					<div class="tsd-signature tsd-kind-icon">_last<wbr>Update<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/404f677/simscript/animation.ts#L66">animation.ts:66</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="_queues" class="tsd-anchor"></a>
-					<h3>_queues</h3>
-					<div class="tsd-signature tsd-kind-icon">_queues<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><a href="queue.html" class="tsd-signature-type" data-tsd-kind="Class">Queue</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AnimationQueue</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/404f677/simscript/animation.ts#L63">animation.ts:63</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="_sim" class="tsd-anchor"></a>
-					<h3>_sim</h3>
-					<div class="tsd-signature tsd-kind-icon">_sim<span class="tsd-signature-symbol">:</span> <a href="simulation.html" class="tsd-signature-type" data-tsd-kind="Class">Simulation</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/404f677/simscript/animation.ts#L59">animation.ts:59</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="_svg" class="tsd-anchor"></a>
-					<h3>_svg</h3>
-					<div class="tsd-signature tsd-kind-icon">_svg<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/404f677/simscript/animation.ts#L67">animation.ts:67</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="_width" class="tsd-anchor"></a>
-					<h3>_width</h3>
-					<div class="tsd-signature tsd-kind-icon">_width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/404f677/simscript/animation.ts#L61">animation.ts:61</a></li>
-						</ul>
-					</aside>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+					<a name="animatetoqueueend" class="tsd-anchor"></a>
+					<h3>animate<wbr>ToQueue<wbr>End</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> animateToQueueEnd<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> animateToQueueEnd<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/133bbbb/simscript/animation.ts#L214">animation.ts:214</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets or sets a value that determines whether entities should
+									move towards the end or start of the destination queue.</p>
+								</div>
+								<p>The default value for this property is <strong>true</strong>, which causes
+								entities to move towards the end of the destination queue.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/133bbbb/simscript/animation.ts#L217">animation.ts:217</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets or sets a value that determines whether entities should
+									move towards the end or start of the destination queue.</p>
+								</div>
+								<p>The default value for this property is <strong>true</strong>, which causes
+								entities to move towards the end of the destination queue.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="getentityhtml" class="tsd-anchor"></a>
 					<h3>get<wbr>Entity<wbr>Html</h3>
@@ -289,7 +246,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/404f677/simscript/animation.ts#L103">animation.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/133bbbb/simscript/animation.ts#L188">animation.ts:188</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -297,13 +254,27 @@
 									<p>Gets or sets a function that returns the HTML to be used
 									to create elements that represent the animated entity.</p>
 								</div>
+								<p>The function should return the element&#39;s innerHTML.
+								The <a href="animation.html">Animation</a> class creates the outer HTML.</p>
+								<p>The innerHTML string format depends on the animation&#39;s
+								host element.</p>
+								<p>For regular <strong>div</strong> hosts, the function will usually
+								return a <strong>div</strong> or an <strong>img</strong> element.</p>
+								<p>For <strong>SVG</strong> hosts, the function will usually return
+									a <strong>g</strong> element, which represents an <strong>SVG</strong> group,
+								or an <strong>SVG</strong> primitive such as <strong>polygon</strong> or <strong>circle</strong>.</p>
+								<p>For <strong>A-Frame</strong> hosts, the function will usually return
+								an <strong>a-entity</strong> element.</p>
+								<p>For <strong>X3D</strong> hosts, the function will usually return a
+									<strong>transform</strong> element containing one of more <strong>shape</strong>
+								elements.</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Function</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/404f677/simscript/animation.ts#L106">animation.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/133bbbb/simscript/animation.ts#L191">animation.ts:191</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -311,6 +282,20 @@
 									<p>Gets or sets a function that returns the HTML to be used
 									to create elements that represent the animated entity.</p>
 								</div>
+								<p>The function should return the element&#39;s innerHTML.
+								The <a href="animation.html">Animation</a> class creates the outer HTML.</p>
+								<p>The innerHTML string format depends on the animation&#39;s
+								host element.</p>
+								<p>For regular <strong>div</strong> hosts, the function will usually
+								return a <strong>div</strong> or an <strong>img</strong> element.</p>
+								<p>For <strong>SVG</strong> hosts, the function will usually return
+									a <strong>g</strong> element, which represents an <strong>SVG</strong> group,
+								or an <strong>SVG</strong> primitive such as <strong>polygon</strong> or <strong>circle</strong>.</p>
+								<p>For <strong>A-Frame</strong> hosts, the function will usually return
+								an <strong>a-entity</strong> element.</p>
+								<p>For <strong>X3D</strong> hosts, the function will usually return a
+									<strong>transform</strong> element containing one of more <strong>shape</strong>
+								elements.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -322,24 +307,129 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-set-signature tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="hostelement" class="tsd-anchor"></a>
+					<h3>host<wbr>Element</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hostElement<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/133bbbb/simscript/animation.ts#L138">animation.ts:138</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a reference to the animation&#39;s host element.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="hosttag" class="tsd-anchor"></a>
+					<h3>host<wbr>Tag</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hostTag<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/133bbbb/simscript/animation.ts#L144">animation.ts:144</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the tag name of the element&#39;s host element.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="isthreed" class="tsd-anchor"></a>
+					<h3>is<wbr>ThreeD</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> isThreeD<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/133bbbb/simscript/animation.ts#L150">animation.ts:150</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a value that determines whether this animation is a 3D animation.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="queues" class="tsd-anchor"></a>
 					<h3>queues</h3>
-					<ul class="tsd-signatures tsd-kind-set-signature tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> queues<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/ianimatedqueue.html" class="tsd-signature-type" data-tsd-kind="Interface">IAnimatedQueue</a><span class="tsd-signature-symbol">[]</span></li>
 						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> queues<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../interfaces/ianimatedqueue.html" class="tsd-signature-type" data-tsd-kind="Interface">IAnimatedQueue</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/404f677/simscript/animation.ts#L114">animation.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/133bbbb/simscript/animation.ts#L240">animation.ts:240</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Sets an array with queue animation information.</p>
+									<p>Gets or sets an array with queue animation information.</p>
 								</div>
-								<p>The items in the array should implement the <a href="../interfaces/ianimatedqueue.html">IAnimatedQueue</a> interface,</p>
+								<p>The items in the array should implement the <a href="../interfaces/ianimatedqueue.html">IAnimatedQueue</a> interface.</p>
+								<p>For example:</p>
+								<pre><code class="language-typescript"><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Animation</span><span style="color: #000000">(</span><span style="color: #001080">sim</span><span style="color: #000000">, </span><span style="color: #001080">animationHost</span><span style="color: #000000">, {</span>
+<span style="color: #000000">    </span><span style="color: #795E26">getEntityHtml</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #001080">e</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {...},</span>
+<span style="color: #000000">    </span><span style="color: #001080">queues:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">        { </span><span style="color: #001080">queue:</span><span style="color: #000000"> </span><span style="color: #001080">sim</span><span style="color: #000000">.</span><span style="color: #001080">qPedArr</span><span style="color: #000000">, </span><span style="color: #001080">element:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;.ss-queue.ped-arr&#039;</span><span style="color: #000000"> },</span>
+<span style="color: #000000">        { </span><span style="color: #001080">queue:</span><span style="color: #000000"> </span><span style="color: #001080">sim</span><span style="color: #000000">.</span><span style="color: #001080">qPedXing</span><span style="color: #000000">, </span><span style="color: #001080">element:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;.ss-queue.ped-xing&#039;</span><span style="color: #000000">, </span><span style="color: #001080">angle:</span><span style="color: #000000"> -</span><span style="color: #098658">45</span><span style="color: #000000">, </span><span style="color: #001080">max:</span><span style="color: #000000"> </span><span style="color: #098658">8</span><span style="color: #000000"> },</span>
+<span style="color: #000000">        { </span><span style="color: #001080">queue:</span><span style="color: #000000"> </span><span style="color: #001080">sim</span><span style="color: #000000">.</span><span style="color: #001080">qPedXed</span><span style="color: #000000">, </span><span style="color: #001080">element:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;.ss-queue.ped-xed&#039;</span><span style="color: #000000"> },</span>
+<span style="color: #000000">        { </span><span style="color: #001080">queue:</span><span style="color: #000000"> </span><span style="color: #001080">sim</span><span style="color: #000000">.</span><span style="color: #001080">qPedLeave</span><span style="color: #000000">, </span><span style="color: #001080">element:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;.ss-queue.ped-leave&#039;</span><span style="color: #000000"> },</span>
+<span style="color: #000000">        ...</span>
+<span style="color: #000000">    ]</span>
+<span style="color: #000000">});</span>
+</code></pre>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/ianimatedqueue.html" class="tsd-signature-type" data-tsd-kind="Interface">IAnimatedQueue</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/133bbbb/simscript/animation.ts#L243">animation.ts:243</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets or sets an array with queue animation information.</p>
+								</div>
+								<p>The items in the array should implement the <a href="../interfaces/ianimatedqueue.html">IAnimatedQueue</a> interface.</p>
+								<p>For example:</p>
+								<pre><code class="language-typescript"><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Animation</span><span style="color: #000000">(</span><span style="color: #001080">sim</span><span style="color: #000000">, </span><span style="color: #001080">animationHost</span><span style="color: #000000">, {</span>
+<span style="color: #000000">    </span><span style="color: #795E26">getEntityHtml</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #001080">e</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {...},</span>
+<span style="color: #000000">    </span><span style="color: #001080">queues:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">        { </span><span style="color: #001080">queue:</span><span style="color: #000000"> </span><span style="color: #001080">sim</span><span style="color: #000000">.</span><span style="color: #001080">qPedArr</span><span style="color: #000000">, </span><span style="color: #001080">element:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;.ss-queue.ped-arr&#039;</span><span style="color: #000000"> },</span>
+<span style="color: #000000">        { </span><span style="color: #001080">queue:</span><span style="color: #000000"> </span><span style="color: #001080">sim</span><span style="color: #000000">.</span><span style="color: #001080">qPedXing</span><span style="color: #000000">, </span><span style="color: #001080">element:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;.ss-queue.ped-xing&#039;</span><span style="color: #000000">, </span><span style="color: #001080">angle:</span><span style="color: #000000"> -</span><span style="color: #098658">45</span><span style="color: #000000">, </span><span style="color: #001080">max:</span><span style="color: #000000"> </span><span style="color: #098658">8</span><span style="color: #000000"> },</span>
+<span style="color: #000000">        { </span><span style="color: #001080">queue:</span><span style="color: #000000"> </span><span style="color: #001080">sim</span><span style="color: #000000">.</span><span style="color: #001080">qPedXed</span><span style="color: #000000">, </span><span style="color: #001080">element:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;.ss-queue.ped-xed&#039;</span><span style="color: #000000"> },</span>
+<span style="color: #000000">        { </span><span style="color: #001080">queue:</span><span style="color: #000000"> </span><span style="color: #001080">sim</span><span style="color: #000000">.</span><span style="color: #001080">qPedLeave</span><span style="color: #000000">, </span><span style="color: #001080">element:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;.ss-queue.ped-leave&#039;</span><span style="color: #000000"> },</span>
+<span style="color: #000000">        ...</span>
+<span style="color: #000000">    ]</span>
+<span style="color: #000000">});</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -351,45 +441,103 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+					<a name="rotateentities" class="tsd-anchor"></a>
+					<h3>rotate<wbr>Entities</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> rotateEntities<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> rotateEntities<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/133bbbb/simscript/animation.ts#L201">animation.ts:201</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets or sets a value that determines whether entities should
+									be rotated when in queues or in transit.</p>
+								</div>
+								<p>The default value for this property is <strong>false</strong>, which causes
+								entities to be displayed without any rotation.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/133bbbb/simscript/animation.ts#L204">animation.ts:204</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets or sets a value that determines whether entities should
+									be rotated when in queues or in transit.</p>
+								</div>
+								<p>The default value for this property is <strong>false</strong>, which causes
+								entities to be displayed without any rotation.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="sceneelement" class="tsd-anchor"></a>
+					<h3>scene<wbr>Element</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> sceneElement<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/133bbbb/simscript/animation.ts#L161">animation.ts:161</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a reference to the scene element.</p>
+								</div>
+								<p>In most cases, the scene element is the host element.
+									If the host is an X3D element, the scene element is the host&#39;s SCENE
+								child element.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
+						</li>
+					</ul>
+				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="_getanimationentity" class="tsd-anchor"></a>
-					<h3>_get<wbr>Animation<wbr>Entity</h3>
+					<a name="updatedisplay" class="tsd-anchor"></a>
+					<h3>update<wbr>Display</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">_get<wbr>Animation<wbr>Entity<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AnimationEntity</span></li>
+						<li class="tsd-signature tsd-kind-icon">update<wbr>Display<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/404f677/simscript/animation.ts#L194">animation.ts:194</a></li>
+									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/133bbbb/simscript/animation.ts#L257">animation.ts:257</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>e: <a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AnimationEntity</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="_timenowchanged" class="tsd-anchor"></a>
-					<h3>_time<wbr>Now<wbr>Changed</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">_time<wbr>Now<wbr>Changed<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Bernardo-Castilho/SimScript/blob/404f677/simscript/animation.ts#L124">animation.ts:124</a></li>
-								</ul>
-							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Updates the animation display by showing all entities in
+									animated queues or in transit between animated queues.</p>
+								</div>
+								<p>This method is called by the <a href="animation.html">Animation</a> class
+								automatically when the simulation time advances.</p>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -417,44 +565,32 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="animation.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="animation.html#_entities" class="tsd-kind-icon">_entities</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="animation.html#_getentityhtml" class="tsd-kind-icon">_get<wbr>Entity<wbr>Html</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="animation.html#_height" class="tsd-kind-icon">_height</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="animation.html#_host" class="tsd-kind-icon">_host</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="animation.html#_lastupdate" class="tsd-kind-icon">_last<wbr>Update</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="animation.html#_queues" class="tsd-kind-icon">_queues</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="animation.html#_sim" class="tsd-kind-icon">_sim</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="animation.html#_svg" class="tsd-kind-icon">_svg</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="animation.html#_width" class="tsd-kind-icon">_width</a>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
+								<a href="animation.html#animatetoqueueend" class="tsd-kind-icon">animate<wbr>ToQueue<wbr>End</a>
 							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="animation.html#getentityhtml" class="tsd-kind-icon">get<wbr>Entity<wbr>Html</a>
 							</li>
-							<li class=" tsd-kind-set-signature tsd-parent-kind-class">
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="animation.html#hostelement" class="tsd-kind-icon">host<wbr>Element</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="animation.html#hosttag" class="tsd-kind-icon">host<wbr>Tag</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="animation.html#isthreed" class="tsd-kind-icon">is<wbr>ThreeD</a>
+							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="animation.html#queues" class="tsd-kind-icon">queues</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="animation.html#_getanimationentity" class="tsd-kind-icon">_get<wbr>Animation<wbr>Entity</a>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
+								<a href="animation.html#rotateentities" class="tsd-kind-icon">rotate<wbr>Entities</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="animation.html#sceneelement" class="tsd-kind-icon">scene<wbr>Element</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="animation.html#_timenowchanged" class="tsd-kind-icon">_time<wbr>Now<wbr>Changed</a>
+								<a href="animation.html#updatedisplay" class="tsd-kind-icon">update<wbr>Display</a>
 							</li>
 						</ul>
 					</li>
@@ -524,6 +660,9 @@
 						<a href="../modules.html#assert" class="tsd-kind-icon">assert</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="../modules.html#bind" class="tsd-kind-icon">bind</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="../modules.html#clamp" class="tsd-kind-icon">clamp</a>
 					</li>
 					<li class=" tsd-kind-function">
@@ -551,7 +690,6 @@
 				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
 				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
 			</ul>
