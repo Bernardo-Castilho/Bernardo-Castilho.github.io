@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>RandomVar | simscript</title>
+	<title>Erlang | simscript</title>
 	<meta name="description" content="Documentation for simscript">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">simscript</a>
 				</li>
 				<li>
-					<a href="randomvar.html">RandomVar</a>
+					<a href="erlang.html">Erlang</a>
 				</li>
 			</ul>
-			<h1>Class RandomVar</h1>
+			<h1>Class Erlang</h1>
 		</div>
 	</div>
 </header>
@@ -68,41 +68,23 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Represents a random variable with a uniform distribution
-						between zero and one.</p>
+						<p>Represents a random variable with an Erlang distribution
+						with given <strong>shape</strong> and <strong>scale</strong> parameters.</p>
 					</div>
-					<p>The random variable constructor may specify a <strong>seed</strong> value,
-					which causes the random sequence to be repeatable.</p>
-					<p>Use the <a href="randomvar.html#sample">sample</a> method to retrieve random values from
-					<a href="randomvar.html">RandomVar</a> objects.</p>
+					<p>The Erlang distribution corresponds to the sum of <strong>shape</strong>
+					independent Exponential variables.</p>
+					<p>For more information on exponential distributions see
+					<a href="https://en.wikipedia.org/wiki/Erlang_distribution">exponential distribution</a>.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">RandomVar</span>
+						<a href="exponential.html" class="tsd-signature-type" data-tsd-kind="Class">Exponential</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="uniform.html" class="tsd-signature-type" data-tsd-kind="Class">Uniform</a>
-							</li>
-							<li>
-								<a href="triangular.html" class="tsd-signature-type" data-tsd-kind="Class">Triangular</a>
-							</li>
-							<li>
-								<a href="empirical.html" class="tsd-signature-type" data-tsd-kind="Class">Empirical</a>
-							</li>
-							<li>
-								<a href="exponential.html" class="tsd-signature-type" data-tsd-kind="Class">Exponential</a>
-							</li>
-							<li>
-								<a href="gamma.html" class="tsd-signature-type" data-tsd-kind="Class">Gamma</a>
-							</li>
-							<li>
-								<a href="normal.html" class="tsd-signature-type" data-tsd-kind="Class">Normal</a>
-							</li>
-							<li>
-								<a href="randomint.html" class="tsd-signature-type" data-tsd-kind="Class">RandomInt</a>
+								<span class="target">Erlang</span>
 							</li>
 						</ul>
 					</li>
@@ -115,13 +97,21 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="randomvar.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="erlang.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="erlang.html#mean" class="tsd-kind-icon">mean</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="erlang.html#scale" class="tsd-kind-icon">scale</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="erlang.html#shape" class="tsd-kind-icon">shape</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="randomvar.html#sample" class="tsd-kind-icon">sample</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="erlang.html#sample" class="tsd-kind-icon">sample</a></li>
 							</ul>
 						</section>
 					</div>
@@ -129,56 +119,140 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Random<wbr>Var<span class="tsd-signature-symbol">(</span>seed<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="randomvar.html" class="tsd-signature-type" data-tsd-kind="Class">RandomVar</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Erlang<span class="tsd-signature-symbol">(</span>shape<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, scale<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, seed<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="erlang.html" class="tsd-signature-type" data-tsd-kind="Class">Erlang</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="exponential.html">Exponential</a>.<a href="exponential.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in random.ts:14</li>
+									<li>Defined in random.ts:263</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Initializes a new instance of the <a href="randomvar.html">RandomVar</a> class.</p>
+									<p>Initializes a new instance of the <a href="erlang.html">Erlang</a> class.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>seed: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = null</span></h5>
+									<h5>shape: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Shape parameter (integer, greater than zero).</p>
+									</div>
+								</li>
+								<li>
+									<h5>scale: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Scale parameter (mean value of the Exponential distribution).</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> seed: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Optional value used to initialize the random sequence.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="randomvar.html" class="tsd-signature-type" data-tsd-kind="Class">RandomVar</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="erlang.html" class="tsd-signature-type" data-tsd-kind="Class">Erlang</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+					<a name="mean" class="tsd-anchor"></a>
+					<h3>mean</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> mean<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in random.ts:240</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the mean generated value.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="scale" class="tsd-anchor"></a>
+					<h3>scale</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> scale<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in random.ts:286</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the value of the <strong>scale</strong> parameter.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="shape" class="tsd-anchor"></a>
+					<h3>shape</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> shape<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in random.ts:280</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the value of the <strong>shape</strong> parameter.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 					<a name="sample" class="tsd-anchor"></a>
 					<h3>sample</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 						<li class="tsd-signature tsd-kind-icon">sample<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="exponential.html">Exponential</a>.<a href="exponential.html#sample">sample</a></p>
 								<ul>
-									<li>Defined in random.ts:27</li>
+									<li>Defined in random.ts:293</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets a random value uniformly distributed between zero and one.</p>
+									<p>Gets a random value that follows an exponential distribution with
+									a given <a href="erlang.html#mean">mean</a>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -212,9 +286,30 @@
 					<li class=" tsd-kind-class">
 						<a href="entitygenerator.html" class="tsd-kind-icon">Entity<wbr>Generator</a>
 					</li>
-					<li class=" tsd-kind-class">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
 						<a href="erlang.html" class="tsd-kind-icon">Erlang</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+								<a href="erlang.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+								<a href="erlang.html#mean" class="tsd-kind-icon">mean</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="erlang.html#scale" class="tsd-kind-icon">scale</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="erlang.html#shape" class="tsd-kind-icon">shape</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="erlang.html#sample" class="tsd-kind-icon">sample</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="event.html" class="tsd-kind-icon">Event</a>
 					</li>
@@ -248,21 +343,9 @@
 					<li class=" tsd-kind-class">
 						<a href="randomint.html" class="tsd-kind-icon">Random<wbr>Int</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class=" tsd-kind-class">
 						<a href="randomvar.html" class="tsd-kind-icon">Random<wbr>Var</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="randomvar.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="randomvar.html#sample" class="tsd-kind-icon">sample</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="simulation.html" class="tsd-kind-icon">Simulation</a>
 					</li>

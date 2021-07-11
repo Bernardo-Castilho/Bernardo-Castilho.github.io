@@ -79,10 +79,10 @@
 						queue, seize one capacity unit of a server queue, leave the waiting
 						queue, undergo a delay that represents the service, then leave the
 					server:</p>
-					<pre><code class="language-typescript"><span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">Customer</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">Entity</span><span style="color: #000000"> {</span>
+					<pre><code class="language-typescript"><span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">Customer</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">Entity</span><span style="color: #000000">&lt;</span><span style="color: #267F99">BarberShop</span><span style="color: #000000">&gt; {</span>
 <span style="color: #000000">    </span><span style="color: #001080">service</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Uniform</span><span style="color: #000000">(</span><span style="color: #098658">15</span><span style="color: #000000"> - </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #098658">15</span><span style="color: #000000"> + </span><span style="color: #098658">3</span><span style="color: #000000">);</span>
 <span style="color: #000000">    </span><span style="color: #0000FF">async</span><span style="color: #000000"> </span><span style="color: #795E26">script</span><span style="color: #000000">() {</span>
-<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">shop</span><span style="color: #000000"> = </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">simulation</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #267F99">BarberShop</span><span style="color: #000000">;</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">shop</span><span style="color: #000000"> = </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">simulation</span><span style="color: #000000">;</span>
 <span style="color: #000000">        </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #795E26">enterQueue</span><span style="color: #000000">(</span><span style="color: #001080">shop</span><span style="color: #000000">.</span><span style="color: #001080">qWait</span><span style="color: #000000">); </span><span style="color: #008000">// enter the line (unlimited capacity)</span>
 <span style="color: #000000">        </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #795E26">enterQueue</span><span style="color: #000000">(</span><span style="color: #001080">shop</span><span style="color: #000000">.</span><span style="color: #001080">qJoe</span><span style="color: #000000">); </span><span style="color: #008000">// seize Joe the barber (capacity == 1)</span>
 <span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #795E26">leaveQueue</span><span style="color: #000000">(</span><span style="color: #001080">shop</span><span style="color: #000000">.</span><span style="color: #001080">qWait</span><span style="color: #000000">); </span><span style="color: #008000">// leave the line</span>
@@ -96,26 +96,6 @@
 					<a href="tally.html">Tally</a> objects.</p>
 					<p>You can also generate complete reports on queue utilization using
 					the <a href="simulation.html#getstatstable">Simulation.getStatsTable</a> method.</p>
-					<p>For example, here is the table generated after running the example
-					shown above:</p>
-					<pre><code><span style="color: #000000"> </span><span style="color: #001080">BarberShop</span>
-<span style="color: #000000"> **</span><span style="color: #001080">Finish</span><span style="color: #000000"> </span><span style="color: #001080">Time</span><span style="color: #000000">**    </span><span style="color: #098658">3</span><span style="color: #000000">,</span><span style="color: #098658">380.37</span>
-<span style="color: #000000"> **</span><span style="color: #001080">Elapsed</span><span style="color: #000000"> </span><span style="color: #001080">Time</span><span style="color: #000000">** (</span><span style="color: #001080">s</span><span style="color: #000000">)    </span><span style="color: #098658">0.01</span>
-<span style="color: #000000"> **</span><span style="color: #001080">Populations</span><span style="color: #000000">**</span>
-<span style="color: #000000"> **</span><span style="color: #001080">Queue</span><span style="color: #000000">    </span><span style="color: #001080">Min</span><span style="color: #000000">    </span><span style="color: #001080">Avg</span><span style="color: #000000">    </span><span style="color: #001080">Max</span><span style="color: #000000">    </span><span style="color: #001080">StDev</span><span style="color: #000000">**</span>
-<span style="color: #000000"> **</span><span style="color: #001080">Wait</span><span style="color: #000000"> </span><span style="color: #001080">Area</span><span style="color: #000000">**    </span><span style="color: #098658">0.00</span><span style="color: #000000">    </span><span style="color: #098658">0.03</span><span style="color: #000000">    </span><span style="color: #098658">1.00</span><span style="color: #000000">    </span><span style="color: #098658">0.17</span>
-<span style="color: #000000"> **</span><span style="color: #001080">Joe</span><span style="color: #000000">**    </span><span style="color: #098658">0.00</span><span style="color: #000000">    </span><span style="color: #098658">0.82</span><span style="color: #000000">    </span><span style="color: #098658">1.00</span><span style="color: #000000">    </span><span style="color: #098658">0.38</span>
-<span style="color: #000000"> **</span><span style="color: #001080">Dwell</span><span style="color: #000000"> </span><span style="color: #001080">Times</span><span style="color: #000000">**</span>
-<span style="color: #000000"> **</span><span style="color: #001080">Queue</span><span style="color: #000000">    </span><span style="color: #001080">Min</span><span style="color: #000000">    </span><span style="color: #001080">Avg</span><span style="color: #000000">    </span><span style="color: #001080">Max</span><span style="color: #000000">    </span><span style="color: #001080">StDev</span><span style="color: #000000">    </span><span style="color: #001080">Cnt</span><span style="color: #000000">**</span>
-<span style="color: #000000"> **</span><span style="color: #001080">Wait</span><span style="color: #000000"> </span><span style="color: #001080">Area</span><span style="color: #000000">**    </span><span style="color: #098658">0.00</span><span style="color: #000000">    </span><span style="color: #098658">0.54</span><span style="color: #000000">    </span><span style="color: #098658">6.81</span><span style="color: #000000">    </span><span style="color: #098658">1.30</span><span style="color: #000000">    </span><span style="color: #098658">185</span>
-<span style="color: #000000"> **</span><span style="color: #001080">Joe</span><span style="color: #000000">**    </span><span style="color: #098658">12.11</span><span style="color: #000000">    </span><span style="color: #098658">14.91</span><span style="color: #000000">    </span><span style="color: #098658">17.99</span><span style="color: #000000">    </span><span style="color: #098658">1.76</span><span style="color: #000000">    </span><span style="color: #098658">185</span>
-</code></pre>
-					<pre><code>
-<span style="color: #001080">Notice</span><span style="color: #000000"> </span><span style="color: #001080">how</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">table</span><span style="color: #000000"> </span><span style="color: #001080">shows</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">server</span><span style="color: #000000"> </span><span style="color: #001080">utilization</span>
-<span style="color: #000000">(</span><span style="color: #001080">average</span><span style="color: #000000"> </span><span style="color: #001080">population</span><span style="color: #000000"> </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> **</span><span style="color: #001080">Joe</span><span style="color: #000000">** </span><span style="color: #001080">queue</span><span style="color: #000000"> </span><span style="color: #001080">is</span><span style="color: #000000"> **</span><span style="color: #098658">82</span><span style="color: #000000">%**)</span>
-<span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #267F99">well</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #267F99">the</span><span style="color: #000000"> </span><span style="color: #267F99">waiting</span><span style="color: #000000"> </span><span style="color: #267F99">times</span><span style="color: #000000"> (</span><span style="color: #267F99">average</span><span style="color: #000000"> **</span><span style="color: #098658">0.54</span><span style="color: #000000">** </span><span style="color: #267F99">min</span><span style="color: #000000">,</span>
-<span style="color: #267F99">longest</span><span style="color: #000000"> **</span><span style="color: #098658">6.81</span><span style="color: #000000">** </span><span style="color: #267F99">min</span><span style="color: #000000">).</span>
-</code></pre>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -184,7 +164,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:74</li>
+									<li>Defined in queue.ts:53</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -237,7 +217,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:230</li>
+									<li>Defined in queue.ts:209</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -259,7 +239,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:218</li>
+									<li>Defined in queue.ts:197</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -282,7 +262,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:118</li>
+									<li>Defined in queue.ts:97</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -301,7 +281,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:121</li>
+									<li>Defined in queue.ts:100</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -329,13 +309,13 @@
 					<a name="entities" class="tsd-anchor"></a>
 					<h3>entities</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> entities<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> entities<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a><span class="tsd-signature-symbol">&lt;</span><a href="simulation.html" class="tsd-signature-type" data-tsd-kind="Class">Simulation</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:148</li>
+									<li>Defined in queue.ts:127</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -343,7 +323,7 @@
 									<p>Gets an array containing the entities currently in the <a href="queue.html">Queue</a>.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a><span class="tsd-signature-symbol">&lt;</span><a href="simulation.html" class="tsd-signature-type" data-tsd-kind="Class">Simulation</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -357,7 +337,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:178</li>
+									<li>Defined in queue.ts:157</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -380,7 +360,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:171</li>
+									<li>Defined in queue.ts:150</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -397,13 +377,13 @@
 					<a name="items" class="tsd-anchor"></a>
 					<h3>items</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> items<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">QueueItem</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> items<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a><span class="tsd-signature-symbol">&lt;</span><a href="simulation.html" class="tsd-signature-type" data-tsd-kind="Class">Simulation</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">QueueItem</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:158</li>
+									<li>Defined in queue.ts:137</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -412,7 +392,7 @@
 									are {@link QueueItem} objects containing information about the entities.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">QueueItem</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a><span class="tsd-signature-symbol">&lt;</span><a href="simulation.html" class="tsd-signature-type" data-tsd-kind="Class">Simulation</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">QueueItem</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -426,7 +406,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:164</li>
+									<li>Defined in queue.ts:143</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -448,7 +428,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:236</li>
+									<li>Defined in queue.ts:215</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -470,7 +450,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:224</li>
+									<li>Defined in queue.ts:203</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -493,7 +473,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:101</li>
+									<li>Defined in queue.ts:80</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -508,7 +488,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:104</li>
+									<li>Defined in queue.ts:83</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -538,7 +518,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:196</li>
+									<li>Defined in queue.ts:175</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -562,7 +542,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:187</li>
+									<li>Defined in queue.ts:166</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -586,7 +566,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:139</li>
+									<li>Defined in queue.ts:118</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -608,7 +588,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:212</li>
+									<li>Defined in queue.ts:191</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -631,7 +611,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:142</li>
+									<li>Defined in queue.ts:121</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -648,7 +628,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:133</li>
+									<li>Defined in queue.ts:112</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -675,7 +655,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:205</li>
+									<li>Defined in queue.ts:184</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -702,7 +682,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:338</li>
+									<li>Defined in queue.ts:317</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -718,13 +698,13 @@
 					<a name="add" class="tsd-anchor"></a>
 					<h3>add</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a>, units<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a><span class="tsd-signature-symbol">&lt;</span><a href="simulation.html" class="tsd-signature-type" data-tsd-kind="Class">Simulation</a><span class="tsd-signature-symbol">&gt;</span>, units<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:256</li>
+									<li>Defined in queue.ts:235</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -735,7 +715,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>e: <a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a></h5>
+									<h5>e: <a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a><span class="tsd-signature-symbol">&lt;</span><a href="simulation.html" class="tsd-signature-type" data-tsd-kind="Class">Simulation</a><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p><a href="entity.html">Entity</a> to add to the <a href="queue.html">Queue</a>.</p>
 									</div>
@@ -762,7 +742,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:246</li>
+									<li>Defined in queue.ts:225</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -789,13 +769,13 @@
 					<a name="remove" class="tsd-anchor"></a>
 					<h3>remove</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">remove<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">remove<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a><span class="tsd-signature-symbol">&lt;</span><a href="simulation.html" class="tsd-signature-type" data-tsd-kind="Class">Simulation</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:297</li>
+									<li>Defined in queue.ts:276</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -806,7 +786,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>e: <a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a></h5>
+									<h5>e: <a href="entity.html" class="tsd-signature-type" data-tsd-kind="Class">Entity</a><span class="tsd-signature-symbol">&lt;</span><a href="simulation.html" class="tsd-signature-type" data-tsd-kind="Class">Simulation</a><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p><a href="entity.html">Entity</a> to remove from the <a href="queue.html">Queue</a>.</p>
 										<p>If the <a href="entity.html">Entity</a> is not currently in the <a href="queue.html">Queue</a>, an exception is thrown.</p>
@@ -827,7 +807,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in queue.ts:322</li>
+									<li>Defined in queue.ts:301</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -861,11 +841,14 @@
 					<li class=" tsd-kind-class">
 						<a href="empirical.html" class="tsd-kind-icon">Empirical</a>
 					</li>
-					<li class=" tsd-kind-class">
+					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="entity.html" class="tsd-kind-icon">Entity</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="entitygenerator.html" class="tsd-kind-icon">Entity<wbr>Generator</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="erlang.html" class="tsd-kind-icon">Erlang</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="event.html" class="tsd-kind-icon">Event</a>
@@ -878,6 +861,9 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="fecitem.html" class="tsd-kind-icon">Fec<wbr>Item</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="gamma.html" class="tsd-kind-icon">Gamma</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="lognormal.html" class="tsd-kind-icon">Log<wbr>Normal</a>
