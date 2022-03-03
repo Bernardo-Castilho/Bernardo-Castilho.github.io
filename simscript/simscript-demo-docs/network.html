@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./style.css">
+    <title>Network Intro - SimScript</title>
+</head>
+<body>
+    <h1>
+        Network Intro Simulation
+    </h1>
+    <p>
+        We are modeling a neighborhood with the following qualities:
+    </p>
+    <ul>
+        <li>
+            The neighborhood is served by a grid-like street network with 
+            nodes 100m apart.</li>
+        <li>
+            Emergency services are requested periodically (once per minute 
+            on average) at random points on the network.</li>
+        <li>
+            Service requests are answered by a fleet of five emergency 
+            vehicles which travel with speeds between 10 and 20 km/h.</li>
+        <li>
+            When an emergency vehicle is assigned a task, it must travel 
+            from its current location to the request location on the network.</li>
+        <li>
+            Once the emergency vehicle arrives at the location, it must 
+            spend some time servicing the request (120 seconds on average).</li>
+    </ul>
+    <p>
+        We want to answer these questions:
+    </p>
+    <ol>
+        <li>
+            What is the average utilization of the service fleet?</li>
+        <li>
+            What is the service vehicle's average response time?</li>
+    </ol>
+    <p>
+        <a href="https://stackblitz.com/edit/typescript-hl7cya" target="_blank">
+            Click here to see and run the simulation
+        </a>.
+    <p>
+</body>
+</html>

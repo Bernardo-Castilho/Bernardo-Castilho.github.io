@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./style.css">
+    <title>Crosswalk - SimScript</title>
+</head>
+<body>
+    <h1>
+        Crosswalk Simulation
+    </h1>
+    <p>
+        We are modeling a signalized crosswak with the following qualities:
+    </p>
+    <ul>
+        <li>
+            There is a crosswalk controlled by a traffic light with a fixed 
+            red/yellow/green cycle (20/10/30 seconds for pedestrians by default).</li>
+        <li>
+            Vehicles enter the simulation at a random rate (one every 10 
+            seconds on average) and drive to the crosswalk with random speed.</li>
+        <li>
+            If the light is not green, vehicles wait until it turns green.</li>
+        <li>
+            Once the light is green, vehicles drive through the crosswalk and 
+            leave the system.</li>
+        <li>
+            Pedestrians enter the simulation at a random rate (one every 6 
+            seconds on average) and walk to the crosswalk with random speed.</li>
+        <li>
+            If the light is not green, pedestrians wait until it turns green.</li>
+        <li>
+            Once the light is green, pedestrians walk through the crosswalk 
+            and leave the system.</li>
+    </ul>
+    <p>
+        We want to answer these questions:
+    </p>
+    <ol>
+        <li>
+            How long do vehicles have to wait in order to cross?</li>
+        <li>
+            How long do pedestrians have to wait in order to cross?</li>
+        <li>
+            How long are the queues of vehicles and pedestrians waiting to cross?</li>
+    </ol>
+    <p>
+        <a href="https://stackblitz.com/edit/typescript-ehhn4e" target="_blank">
+            Click here to see and run the simulation
+        </a>.
+    <p>
+</body>
+</html>
