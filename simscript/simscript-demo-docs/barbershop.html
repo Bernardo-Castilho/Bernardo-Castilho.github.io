@@ -4,12 +4,16 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="./style.css">
-    <title>Crosswalk - SimScript</title>
+    <title>Barbershop - SimScript</title>
 </head>
 <body>
     <h1>
         Barbershop Simulation
     </h1>
+
+    <h2>
+        System Description
+    </h2>
     <p>
         We are modeling a barber shop with the following qualities:
     </p>
@@ -41,6 +45,66 @@
         <li>
             On average, how long does a customer have to wait?</li>
     </ol>
+
+
+    <h2>
+        Model Description
+    </h2>
+    <p>
+        The model was implemented as follows:
+    </p>
+    <ul>
+        <li>
+            A <b>BarberShop</b> class that extends <b>Simulation</b> and
+            adds two queues, one to represent the barber and one to 
+            represent the waiting area.
+            The queues control the flow of entities through the model 
+            and collect usage statistics.</li>
+        <li>
+            When the simulation starts, it sets the duration of the run 
+            and uses the <b>generateEntities</b> method to create customers 
+            with random inter-arrival times (18 plus or minus 6 minutes).</li>
+        <li>
+            <p>
+                The <b>Customer</b> class extends <b>Entity</b> and has a script
+                function that specifies the actions performed by customers:
+            </p>
+            <ol>
+                <li>
+                    Enter the waiting queue,</li>
+                <li>
+                    Seize the barber (waiting in the queue if necessary),</li>
+                <li>
+                    Leave the waiting queue,</li>
+                <li>
+                    Experience a delay to represent the haricut, and</li>
+                <li>
+                    Release the barber.</li>
+            </ol>
+        </li>
+        <li>
+            When the simulation ends, it generates a report using the 
+            simulation variables and utility methods such as <b>getStatsTable</b>
+            and <b>getHistogramChart</b>.
+    </ul>
+
+    <h2>
+        See Also
+    </h2>
+    <ul>
+        <li>
+            <a href="https://try-mts.com/gpss-introduction-and-barber-shop-simulation/" target="_blank">
+                GPSS - Introduction and Barber Shop Simulation
+            </a></li>
+        <li>
+            <a href="https://martendo.github.io/gpss.py/examples#barber-shop" target="_blank">
+                GPSS.py - Examples
+            </a></li>
+        <li>
+            <a href="https://deepblue.lib.umich.edu/handle/2027.42/7464" target="_blank">
+                A GPSS primer
+            </a></li>
+    </ul>
     <p>
         <a href="https://stackblitz.com/edit/typescript-efht9t" target="_blank">
             Click here to see and run the simulation

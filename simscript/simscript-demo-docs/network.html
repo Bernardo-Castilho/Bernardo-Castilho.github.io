@@ -10,6 +10,10 @@
     <h1>
         Network Intro Simulation
     </h1>
+
+    <h2>
+        System Description
+    </h2>
     <p>
         We are modeling a neighborhood with the following qualities:
     </p>
@@ -39,6 +43,81 @@
         <li>
             What is the service vehicle's average response time?</li>
     </ol>
+
+    <h2>
+        Model Description
+    </h2>
+    <p>
+        The model was implemented as follows:
+    </p>
+    <ul>
+        <li>
+            A <b>NetworkIntro</b> class that extends <b>Simulation</b> and
+            adds queues to represent busy and idle service vehicles as well
+            as a <b>Network</b> object composed of nodes and links.</li>
+        <li>
+            The <b>Network</b> nodes contain queues which are used to animate
+            the service vehicles and to keep track of their positions.</li>
+        <li>
+            When starting, the simulation creates a batch of <b>ServiceVehicle</b>
+            entitites and schedules the creation of <b>ServiceRequest</b> entities.</li>
+        <li>
+            The <b>ServiceVehicle</b> entity script starts by selecting a
+            random free node on the network, and then enters a loop where it
+            searches for the closest <b>ServiceRequest</b>, informs the request
+            it has been assigned, and uses the network's <b>shortestPath</b>
+            method to find the sequence of links it must travel to get to the
+            request. Once it arrives, it enters a service queue, undergoes a
+            delay to perform the service, leaves the service queue, and becomes
+            available again.</li>
+        <li>
+            The <b>ServiceRequest</b> entity script starts by selecting a
+            random free node on the network, entering it, waiting for
+            a <b>ServiceVehicle</b> to handle the request, and leaving
+            the node and the system.</li>
+        <li>
+            The flow of entities through the model is controlled by "signals",
+            implemented by the <b>waitSignal</b> and <b>sendSignal</b> methods
+            and by the paths returned by the <b>Network</b> object, which are
+            calculated using the <b>shortestPath</b> method.</li>
+    </ul>
+    <p>
+        This sample uses an <b>Animation</b> object to show an X3DOM animation 
+        while the simulation runs.
+    </p>
+    <p>
+        The <b>Animation</b> class uses an <b>x3d</b> host element to display
+        the animation by specifying icons to represent each entity type and
+        associating positions with specific queues.
+        Entities are rendered while in or in-transit between animated queues.
+    </p>
+    <p>
+        Service requests are represented by transparent red bubbles on the 
+        network, and service vehicles are represented by small cars that turn
+        as they move along the network.
+    </p>
+
+    <h2>
+        See Also
+    </h2>
+    <ul>
+        <li>
+            <a href="https://people.ece.ubc.ca/~vleung/NSERC-DIVA/2011%20Papers/divan12c-shafiee.pdf" target="_blank">
+                Modeling and Simulation of Vehicular Networks
+            </a></li>
+        <li>
+            <a href="https://arxiv.org/ftp/arxiv/papers/1304/1304.5181.pdf" target="_blank">
+                Comparative Study of Simulation for Vehicular Ad-hoc Network
+            </a></li>
+        <li>
+            <a href="https://jwcn-eurasipjournals.springeropen.com/articles/10.1186/s13638-018-1315-y" target="_blank">
+                Services and simulation frameworks for vehicular cloud computing: a contemporary survey
+            </a></li>
+        <li>
+            <a href="https://github.com/tan31989/Dijkstra-opengl-network-simulation" target="_blank">
+                Dijkstra OpenGL Network Simulation
+            </a></li>
+    </ul>
     <p>
         <a href="https://stackblitz.com/edit/typescript-hl7cya" target="_blank">
             Click here to see and run the simulation
