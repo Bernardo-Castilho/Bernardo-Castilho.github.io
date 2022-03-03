@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./style.css">
+    <title>Crosswalk - SimScript</title>
+</head>
+<body>
+    <h1>
+        Crosswalk Simulation
+    </h1>
+
+    <h2>
+        System Description
+    </h2>
+    <p>
+        We are modeling a signalized crosswak with the following qualities:
+    </p>
+    <ul>
+        <li>
+            There is a crosswalk controlled by a traffic light with a fixed 
+            red/yellow/green cycle (20/10/30 seconds for pedestrians by default).</li>
+        <li>
+            Vehicles enter the simulation at a random rate (one every 10 
+            seconds on average) and drive to the crosswalk with random speed.</li>
+        <li>
+            If the light is not green, vehicles wait until it turns green.</li>
+        <li>
+            Once the light is green, vehicles drive through the crosswalk and 
+            leave the system.</li>
+        <li>
+            Pedestrians enter the simulation at a random rate (one every 6 
+            seconds on average) and walk to the crosswalk with random speed.</li>
+        <li>
+            If the light is not green, pedestrians wait until it turns green.</li>
+        <li>
+            Once the light is green, pedestrians walk through the crosswalk 
+            and leave the system.</li>
+    </ul>
+    <p>
+        We want to answer these questions:
+    </p>
+    <ol>
+        <li>
+            How long do vehicles have to wait in order to cross?</li>
+        <li>
+            How long do pedestrians have to wait in order to cross?</li>
+        <li>
+            How long are the queues of vehicles and pedestrians waiting to cross?</li>
+    </ol>
+
+    <h2>
+        Model Description
+    </h2>
+    <p>
+        The model was implemented as follows:
+    </p>
+    <ul>
+        <li>
+            A <b>Crosswalk</b> class that extends <b>Simulation</b> and
+            adds queues to represent the crosswalk as well as car and 
+            pedestrian positions on the simulation (which is animated).</li>
+        <li>
+            When the simulation starts, it creates a single <b>TrafficLight</b>
+            entity and streams of <b>Pedestrian</b> and <b>Car</b> entities.</li>
+        <li>
+            The <b>TrafficLight</b> entity's script method cycles through the
+            red, yellow, and green states according to a fixed schedule. When
+            the light state changes, the entity sends a signal to activate any
+            waiting cars or pedestrians.</li>
+        <li>
+            The <b>Pedestrian</b> and <b>Car</b> entities have a script that
+            causes them to move from an arrival position to the crossing,
+            seize the crossing, wait for the light if necessary, then leave
+            the crossing and walk or drive away.</li>
+        <li>
+            The flow of entities through the model is controlled by "signals",
+            implemented by the <b>waitSignal</b> and <b>sendSignal</b> methods.
+        <li>
+            When the simulation ends, it creates an output report that contains
+            the performance parameters required.</li>
+    </ul>
+    <p>
+        This sample uses an <b>Animation</b> object to show an X3DOM animation 
+        while the simulation runs.
+    </p>
+    <p>
+        The <b>Animation</b> class uses an <b>x3d</b> host element to display
+        the animation by specifying icons to represent each entity type and
+        associating positions with specific queues.
+        Entities are rendered while in or in-transit between animated queues.
+    </p>
+    <p>
+        The traffic light state is shown by changing the icon of entities that
+        represent the red, yellow, and green states. Pedestrians and cars are 
+        represented by icons that move between the queues.
+    </p>
+
+    <h2>
+        See Also
+    </h2>
+    <ul>
+        <li>
+            <a href="https://www.researchgate.net/publication/23777073_Simulating_pedestrian_movements_at_signalized_crosswalk_in_Hong_Kong" target="_blank">
+                Simulating pedestrian movements at signalized crosswalk in Hong Kong
+            </a></li>
+        <li>
+            <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0180992" target="_blank">
+                A microscopic simulation model for pedestrian-pedestrian and pedestrian-vehicle interactions at crosswalks
+            </a></li>
+        <li>
+            <a href="https://rip.trb.org/view/1853638" target="_blank">
+                Driver and Pedestrian Behavior at Crosswalks in Modern Roundabouts using Virtual Reality
+            </a></li>
+    </ul>    
+    <p>
+        <a href="https://stackblitz.com/edit/typescript-ehhn4e" target="_blank">
+            Click here to see and run the simulation
+        </a>.
+    <p>
+</body>
+</html>
