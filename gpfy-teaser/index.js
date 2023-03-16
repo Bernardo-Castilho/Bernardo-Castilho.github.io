@@ -1,3 +1,5 @@
+const viewUrl = "https://gpfy.io/Home/ShowForm?formId=41";
+//const viewUrl = "https://localhost:7160/Home/ShowForm?formId=41";
 const bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxYWIxNDI1Ni1lZTQ5LTQzNmEtYmNkMS04ZDUyNmY1YTVjNDYiLCJuYmYiOjE2Nzg5MzUwNDMsImV4cCI6MTk5NDI5NTA0MywiaWF0IjoxNjc4OTM1MDQzLCJpc3MiOiJodHRwOi8vZ3BmeTIuY29tIiwiYXVkIjoiaHR0cDovL2dwZnkyYXVkaWVuY2UuY29tIn0.aOh7IsuApJ7KDcBikS3B0LAYqS87HeQDKtCXZ2yUmWQ";
 const localize = [
     { sel: ".btn.btn-primary", text: "Gerar Artigo Gratuitamente" }
@@ -59,8 +61,6 @@ addEventListener("load", e => {
     })
 
     // embed form into the iframe
-    //const viewUrl = "https://gpfy.io/Home/ShowForm?formId=41";
-    const viewUrl = "https://localhost:7160/Home/ShowForm?formId=41";
     embedGpfyFrame("my-frame", viewUrl, bearerToken, localize, formCss);
 });
 
