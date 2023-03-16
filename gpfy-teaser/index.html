@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>GPFY - Teaser</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
+    <link rel="stylesheet" href="styles.css" >
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>
+            Escreva um Artigo para um Blog
+        </h1>
+
+        <p>
+            preencha o formulário abaixo e receba
+            gratuitamente um artigo para postar no seu blog.
+        </p>
+
+        <div id="spinner" class="spinner-holder justify-content-center align-items-center">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only"></span>
+            </div>
+        </div>
+
+        <!-- iframe with the form -->
+        <iframe title="GPFY Form View" id="my-frame">
+        </iframe>
+
+        <!-- request full article -->
+        <div id="request-form" class="d-none">
+            <h1>
+                Quer o Artigo Completo?
+            </h1>
+            <p>
+                Preencha o  formulário abaixo para receber o artigo completo:
+            </p>
+            <form>
+                <input id="nome" class="form-control" required placeholder="nome">
+                <input id="email" class="form-control" required type="email" placeholder="email">
+                <input id="tel" class="form-control" type="tel" placeholder="telefone">
+                <input id="cnpj" class="form-control" placeholder="cnpj">
+                <label class="form-control" >
+                    <input type="checkbox" required>
+                    declaro que estou de acordo com a
+                    <a href="https://gpfy.io/Home/Privacy">política de privacidade</a>
+                    da GPFY.
+                </label>
+                <button type="submit" class="btn btn-primary">
+                    Receber o Artigo Completo
+                </button>
+            </form>
+        </div>
+
+        <!-- receive full article -->
+        <div id="request-sent" class="d-none">
+            <h1>
+                Aproveite o Artigo!
+            </h1>
+            <p>
+                Por favor confira seu email, e obrigado
+                por usar GPFY!
+            </p>
+        </div>
+
+    </main>
+</body>
+</html>

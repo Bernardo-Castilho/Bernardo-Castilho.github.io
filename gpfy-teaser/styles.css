@@ -1,0 +1,45 @@
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    padding: 1rem;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+main {
+    display: block;
+    margin: 0 auto;
+    max-width: 400px;
+    text-align: center;
+}
+
+iframe {
+    border: none; 
+    width: 100%; 
+    height: 500px;
+}
+
+form {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.form-control {
+    display: inline-block !important;
+    width: 95% !important;
+    padding: 0.2rem 1rem !important;
+    margin: 0.5rem auto;
+    background-color: #F0F0F0 !important;
+}
+
+.btn.btn-primary,
+.btn.btn-primary:hover,
+.btn.btn-primary:focus,
+.btn.btn-primary:active {
+    color: black !important;
+    background-color: #38D800 !important;
+    border-color: #38D800 !important;
+    width: 95% !important;
+    margin: 0 !important;
+}
