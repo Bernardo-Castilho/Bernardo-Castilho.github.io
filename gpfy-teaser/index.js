@@ -1,55 +1,6 @@
-const viewUrl = "https://gpfy.io/Home/ShowForm?formId=41";
-//const viewUrl = "https://localhost:7160/Home/ShowForm?formId=41";
-const bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxYWIxNDI1Ni1lZTQ5LTQzNmEtYmNkMS04ZDUyNmY1YTVjNDYiLCJuYmYiOjE2Nzg5MzUwNDMsImV4cCI6MTk5NDI5NTA0MywiaWF0IjoxNjc4OTM1MDQzLCJpc3MiOiJodHRwOi8vZ3BmeTIuY29tIiwiYXVkIjoiaHR0cDovL2dwZnkyYXVkaWVuY2UuY29tIn0.aOh7IsuApJ7KDcBikS3B0LAYqS87HeQDKtCXZ2yUmWQ";
-const localize = [
-    { sel: ".btn.btn-primary", text: "Gerar Artigo Gratuitamente" }
-];
-const formCss = `
-    h5.card-title {
-        display: none;
-    }
-    .btn.btn-primary,
-    .btn.btn-primary:hover,
-    .btn.btn-primary:focus,
-    .btn.btn-primary:active {
-        color: black !important;
-        background-color: #38D800 !important;
-        border-color: #38D800 !important;
-        width: 95% !important;
-        margin: 0 !important;
-    }
-    .card .card-body {
-        padding: 0;
-        text-align: center;
-    }
-    .card-text.reply {
-        padding: 1rem 2rem;
-        pointer-events: none;
-        -webkit-mask: linear-gradient(#000, #0000);
-        mask: linear-gradient(#000, #0000);
-        max-height: 200px;
-        overflow: hidden;
-        text-overflow: ellipsis;    
-    }
-    .form-control {
-        display: inline-block !important;
-        width: 95% !important;
-        padding: 0.2rem 1rem !important;
-        background-color: #F0F0F0 !important;
-    }
-    .form-control::invalid {
-        background-color: #F0F0F0 !important;
-    }
-    .expose {
-        max-height: none !important;
-        -webkit-mask: none !important;
-        mask: none !important;
-    }
-    `;
-    
-addEventListener("load", e => {
+addEventListener("load", async e => {
 
-    // hide spinner and listen to replies when frame loads
+    // when frame loads, hide spinner and listen to replies
     document.getElementById("my-frame").addEventListener("load", e => {
 
         // turn spinner off
@@ -57,58 +8,83 @@ addEventListener("load", e => {
 
         // listen to gpt replies
         const doc = e.target.contentWindow.document;
-        doc.addEventListener("gptreplied", e => gptReplied(e, doc)); 
-    })
+        doc.addEventListener("gptreplied", e => gptReplied(e));
+    });
 
     // embed form into the iframe
+    const viewUrl = "https://gpfy.io/Home/ShowForm?formId=44";
+    //const viewUrl = "https://localhost:7160/Home/ShowForm?formId=44";
+    const bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxYWIxNDI1Ni1lZTQ5LTQzNmEtYmNkMS04ZDUyNmY1YTVjNDYiLCJuYmYiOjE2Nzg5MzUwNDMsImV4cCI6MTk5NDI5NTA0MywiaWF0IjoxNjc4OTM1MDQzLCJpc3MiOiJodHRwOi8vZ3BmeTIuY29tIiwiYXVkIjoiaHR0cDovL2dwZnkyYXVkaWVuY2UuY29tIn0.aOh7IsuApJ7KDcBikS3B0LAYqS87HeQDKtCXZ2yUmWQ";
+    const localize = [{ sel: ".btn.btn-primary", text: "Gerar Artigo" }];
+    const fetchCss = await fetch("./form-styles.css");
+    const formCss = await fetchCss.text();
     embedGpfyFrame("my-frame", viewUrl, bearerToken, localize, formCss);
 });
 
 // update form after GPT replies
-function gptReplied(e, doc) {
+function gptReplied(e) {
 
-    // no more requests", truncate the answer
+    // no more requests, truncate the answer
+    const doc = e.target;
     doc.getElementById("btn").disabled = true;
     const reply = doc.getElementById("reply");
     reply.textContent = reply.textContent.substr(0, 400) + "...";
+    reply.classList.remove("expose");
+
+    // autosize the iframe to fit the truncated article
+    autoSizeIframe("my-frame");
 
     // show request form
     const form = document.getElementById("request-form");
     form.classList.remove("d-none");
     form.focus();
     form.scrollIntoView();
-    form.addEventListener("submit", e => submitRequestForm(e, doc));
+    form.addEventListener("submit", e => submitRequestForm(e), {
+        once: true // in case form gets re-used
+    });
 
-    // save request/reply on the form
+    // save request/reply on the request form
     form.detail = e.detail;
 }
 
-// show the article to the user
-async function submitRequestForm(e, doc) {
+// when submitting the request form, show the article
+async function submitRequestForm(e) {
 
-    // no submit
+    // don't submit
     e.preventDefault();
 
     // hide request form
     const form = document.getElementById("request-form");
     form.classList.add("d-none");
 
-    // TODO
-    // save user's name and email
-
     // show message and article
     await getConfirmation("Obrigado por usar GPFY!", "Aproveite o Artigo", true);
+    await sleep(600);
+    const iframe = document.getElementById("my-frame");
+    const doc = iframe.contentWindow.document;
     const reply = doc.getElementById("reply");
     reply.textContent = form.detail.reply;
     reply.classList.add("expose");
 
     // autosize the iframe to fit the whole article
-    requestAnimationFrame(() => {
-        let iframe = document.getElementById("my-frame");
-        iframe.style.height = doc.body.scrollHeight + 'px';
-        iframe.style.width = doc.body.scrollWidth + 'px';
-    });
+    autoSizeIframe("my-frame");
 
+    // TODO
+    // save user's name and email
+}
+
+// auto-size an iframe base on its contents
+function autoSizeIframe(iframeId) {
+    const iframe = document.getElementById(iframeId);
+    const doc = iframe.contentWindow.document;
+    iframe.style.height = "";
+    iframe.style.width = "";
+    requestAnimationFrame(() => {
+        if (doc.body.scrollHeight) {
+            iframe.style.height = doc.body.scrollHeight + "px";
+            iframe.style.width = doc.body.scrollWidth + "px"
+        }
+    });
 }
 
 // embed GPFY form in iframe
@@ -148,18 +124,12 @@ function embedGpfyFrame(iframeId, viewUrl, bearerToken, localize, ...customCss) 
                     }
                 });
             }
-
-            // autosize the iframe
-            requestAnimationFrame(() => {
-                iframe.style.height = doc.body.scrollHeight + 'px';
-                iframe.style.width = doc.body.scrollWidth + 'px';
-            });
   
             // ready to show the frame
             iframe.classList.remove("d-none");
+            autoSizeIframe("my-frame");
         }, {
             once: true, // in case iframe gets re-used
-            passive: true,
         });
     }
   
@@ -243,4 +213,9 @@ function trapFocus(e) {
             }
         }
     });
+}
+
+// delays execution for a few ms
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }

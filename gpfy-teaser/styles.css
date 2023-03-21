@@ -43,3 +43,7 @@ form {
     width: 95% !important;
     margin: 0 !important;
 }
+
+dialog .card-body {
+    padding: 3rem;
+}
