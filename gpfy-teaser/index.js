@@ -1,5 +1,19 @@
-addEventListener("load", async e => {
+const rootUrl = "https://gpfy.io";
 
+// embed a gpfy view in an iframe
+async function gpfyEmbedViewInIframe(iframeId, viewUrl, bearerToken, css, localize) {
+    const gpfy = await import(`${rootUrl}/js/gpfy.js`); // import gpfy module
+    gpfy.embedViewInIframe(iframeId, viewUrl, bearerToken, css, localize); // embed view in iframe
+}
+
+// autosize an iFrame based on its contents
+async function gpfyAutoSizeIframe(iframeId) {
+    const gpfy = await import(`${rootUrl}/js/gpfy.js`); // import gpfy module
+    gpfy.autoSizeIframe(iframeId); // auto-size the frame
+}
+
+addEventListener("load", async e => {
+    
     // when frame loads, hide spinner and listen to replies
     document.getElementById("my-frame").addEventListener("load", e => {
 
@@ -12,13 +26,12 @@ addEventListener("load", async e => {
     });
 
     // embed form into the iframe
-    const viewUrl = "https://gpfy.io/Home/ShowForm?formId=44";
-    //const viewUrl = "https://localhost:7160/Home/ShowForm?formId=44";
+    const viewUrl = `${rootUrl}/Home/ShowForm?formId=44`;
     const bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxYWIxNDI1Ni1lZTQ5LTQzNmEtYmNkMS04ZDUyNmY1YTVjNDYiLCJuYmYiOjE2Nzg5MzUwNDMsImV4cCI6MTk5NDI5NTA0MywiaWF0IjoxNjc4OTM1MDQzLCJpc3MiOiJodHRwOi8vZ3BmeTIuY29tIiwiYXVkIjoiaHR0cDovL2dwZnkyYXVkaWVuY2UuY29tIn0.aOh7IsuApJ7KDcBikS3B0LAYqS87HeQDKtCXZ2yUmWQ";
-    const localize = [{ sel: ".btn.btn-primary", text: "Gerar Artigo" }];
     const fetchCss = await fetch("./form-styles.css");
-    const formCss = await fetchCss.text();
-    embedGpfyFrame("my-frame", viewUrl, bearerToken, localize, formCss);
+    const css = await fetchCss.text();
+    const localize = [{ sel: ".btn.btn-primary", text: "Gerar Artigo" }];
+    gpfyEmbedViewInIframe("my-frame", viewUrl, bearerToken, css, localize);
 });
 
 // update form after GPT replies
@@ -32,7 +45,7 @@ function gptReplied(e) {
     reply.classList.remove("expose");
 
     // autosize the iframe to fit the truncated article
-    autoSizeIframe("my-frame");
+    gpfyAutoSizeIframe("my-frame");
 
     // show request form
     const form = document.getElementById("request-form");
@@ -67,92 +80,10 @@ async function submitRequestForm(e) {
     reply.classList.add("expose");
 
     // autosize the iframe to fit the whole article
-    autoSizeIframe("my-frame");
+    gpfyAutoSizeIframe("my-frame");
 
     // TODO
     // save user's name and email
-}
-
-// auto-size an iframe base on its contents
-function autoSizeIframe(iframeId) {
-    const iframe = document.getElementById(iframeId);
-    const doc = iframe.contentWindow.document;
-    iframe.style.height = "";
-    iframe.style.width = "";
-    requestAnimationFrame(() => {
-        if (doc.body.scrollHeight) {
-            iframe.style.height = doc.body.scrollHeight + "px";
-            iframe.style.width = doc.body.scrollWidth + "px"
-        }
-    });
-}
-
-// embed GPFY form in iframe
-function embedGpfyFrame(iframeId, viewUrl, bearerToken, localize, ...customCss) {
-
-    // find frame
-    let iframe = document.getElementById(iframeId);
-    if (!iframe) {
-        throw `Frame "${iframeId}" not found`;
-    }
-  
-    // apply custom styles and localize if requested
-    if (customCss.length || (localize && localize.length)) {
-      
-        // hide the frame until the styles are loaded
-        iframe.classList.add("d-none");
-        iframe.addEventListener("load", () => {
-            let doc = iframe.contentWindow.document;
-  
-            // apply custom styles
-            if (customCss.length) {
-                let style = document.createElement("style");
-                style.innerHTML = customCss.join("\n");
-                doc.head.appendChild(style);
-            }
-  
-            // localize
-            if (localize && localize.length) {
-                localize.forEach(item => {
-                    if (item.sel) {
-                        let e = doc.querySelector(item.sel);
-                        if (e && (e.tagName == "INPUT" || e.tagName == "TEXTAREA")) {
-                            e.value = item.text;
-                        } else if (e && "textContent" in e) {
-                            e.textContent = item.text;
-                        }
-                    }
-                });
-            }
-  
-            // ready to show the frame
-            iframe.classList.remove("d-none");
-            autoSizeIframe("my-frame");
-        }, {
-            once: true, // in case iframe gets re-used
-        });
-    }
-  
-    // render frame without authorization
-    if (!bearerToken) {
-        iframe.setAttribute("src", viewUrl);
-        return;
-    }
-  
-    // render frame with authorization
-    // note: GPFY tokens will be deducted from the account specified by the *bearerToken*
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", viewUrl);
-    xhr.setRequestHeader("Authorization", `Bearer ${bearerToken}`);
-    xhr.responseType = "blob";
-  
-    // show the frame when ready
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-            iframe.src = URL.createObjectURL(xhr.response);
-        }
-    };
-    xhr.send();
 }
 
 // show a confirmation dialog
