@@ -1,4 +1,5 @@
 const rootUrl = "https://gpfy.io";
+//const rootUrl = "https://localhost:7160";
 
 // embed a gpfy view in an iframe
 async function gpfyEmbedViewInIframe(iframeId, viewUrl, bearerToken, css, localize) {
@@ -70,8 +71,7 @@ async function submitRequestForm(e) {
     const form = document.getElementById("request-form");
     form.classList.add("d-none");
 
-    // show message and article
-    await getConfirmation("Obrigado por usar GPFY!", "Aproveite o Artigo", true);
+    // show article
     await sleep(600);
     const iframe = document.getElementById("my-frame");
     const doc = iframe.contentWindow.document;
@@ -82,8 +82,25 @@ async function submitRequestForm(e) {
     // autosize the iframe to fit the whole article
     gpfyAutoSizeIframe("my-frame");
 
-    // TODO
     // save user's name and email
+    const saveUrl = `${rootUrl}/api/v1/adduser`;
+    const data = {
+        name: document.getElementById("nome").value,
+        email: document.getElementById("email").value,
+        phoneNumber: document.getElementById("tel").value,
+        cnpj: document.getElementById("cnpj").value,
+        article: reply.textContent
+    };
+    const response = await fetch(saveUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data), // body data type must match "Content-Type" header
+    });
+
+    // done!
+    await getConfirmation("Obrigado por usar GPFY!", "Aproveite o Artigo", true);
 }
 
 // show a confirmation dialog
