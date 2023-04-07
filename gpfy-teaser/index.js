@@ -1,11 +1,7 @@
-const rootUrl = "https://gpfy.io";
-//const rootUrl = "https://localhost:7160";
-
-// embed a gpfy view in an iframe
-async function gpfyEmbedViewInIframe(iframeId, viewUrl, bearerToken, css, localize) {
-    const gpfy = await import(`${rootUrl}/js/gpfy.js`); // import gpfy module
-    gpfy.embedViewInIframe(iframeId, viewUrl, bearerToken, css, localize); // embed view in iframe
-}
+// define constants
+const urlGpfy = "https://gpfy.io";
+//const urlGpfy = "https://localhost:7160";
+const iframeId = "gpfy-frame";
 
 // autosize an iFrame based on its contents
 async function gpfyAutoSizeIframe(iframeId) {
@@ -13,26 +9,31 @@ async function gpfyAutoSizeIframe(iframeId) {
     gpfy.autoSizeIframe(iframeId); // auto-size the frame
 }
 
+// embed view in iframe after loading
 addEventListener("load", async e => {
-    
+
+    // apply iframeId
+    const iframe = document.querySelector("iframe");
+    iframe.id = iframeId;
+
+    // embed form in iframe
+    import(`${urlGpfy}/js/gpfy.js`).then(async gpfy => {
+        const css = await (await fetch("./customize/styles.css")).text();
+        const loc = await (await fetch("./customize/localize.json")).json();
+        gpfy.embedViewInIframe(iframeId, `${urlGpfy}/Home/ShowForm?formId=44`, null, css, loc);
+    });
+
     // when frame loads, hide spinner and listen to replies
-    document.getElementById("my-frame").addEventListener("load", e => {
+    iframe.addEventListener("load", e => {
 
         // turn spinner off
-        document.getElementById("spinner").classList.add("d-none");
+        getEl("spinner").classList.add("d-none");
 
         // listen to gpt replies
         const doc = e.target.contentWindow.document;
         doc.addEventListener("gptreplied", e => gptReplied(e));
-    });
 
-    // embed form into the iframe
-    const viewUrl = `${rootUrl}/Home/ShowForm?formId=44`;
-    const bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxYWIxNDI1Ni1lZTQ5LTQzNmEtYmNkMS04ZDUyNmY1YTVjNDYiLCJuYmYiOjE2Nzg5MzUwNDMsImV4cCI6MTk5NDI5NTA0MywiaWF0IjoxNjc4OTM1MDQzLCJpc3MiOiJodHRwOi8vZ3BmeTIuY29tIiwiYXVkIjoiaHR0cDovL2dwZnkyYXVkaWVuY2UuY29tIn0.aOh7IsuApJ7KDcBikS3B0LAYqS87HeQDKtCXZ2yUmWQ";
-    const fetchCss = await fetch("./form-styles.css");
-    const css = await fetchCss.text();
-    const localize = [{ sel: ".btn.btn-primary", text: "Gerar Artigo" }];
-    gpfyEmbedViewInIframe("my-frame", viewUrl, bearerToken, css, localize);
+    });
 });
 
 // update form after GPT replies
@@ -40,16 +41,18 @@ function gptReplied(e) {
 
     // no more requests, truncate the answer
     const doc = e.target;
-    doc.getElementById("btn").disabled = true;
-    const reply = doc.getElementById("reply");
+    const btnAsk = getEl("btn-ask", doc);
+    btnAsk.disabled = true;
+    btnAsk.classList.add("d-none");
+    const reply = getEl("reply", doc);
     reply.textContent = reply.textContent.substr(0, 400) + "...";
     reply.classList.remove("expose");
 
     // autosize the iframe to fit the truncated article
-    gpfyAutoSizeIframe("my-frame");
+    gpfyAutoSizeIframe(iframeId);
 
     // show request form
-    const form = document.getElementById("request-form");
+    const form = getEl("request-form");
     form.classList.remove("d-none");
     form.focus();
     form.scrollIntoView();
@@ -68,27 +71,26 @@ async function submitRequestForm(e) {
     e.preventDefault();
 
     // hide request form
-    const form = document.getElementById("request-form");
+    const form = getEl("request-form");
     form.classList.add("d-none");
 
     // show article
     await sleep(600);
-    const iframe = document.getElementById("my-frame");
     const doc = iframe.contentWindow.document;
-    const reply = doc.getElementById("reply");
+    const reply = getEl("reply", doc);
     reply.textContent = form.detail.reply;
     reply.classList.add("expose");
 
     // autosize the iframe to fit the whole article
-    gpfyAutoSizeIframe("my-frame");
+    gpfyAutoSizeIframe(iframeId);
 
     // save user's name and email
     const saveUrl = `${rootUrl}/api/v1/adduser`;
     const data = {
-        name: document.getElementById("nome").value,
-        email: document.getElementById("email").value,
-        phoneNumber: document.getElementById("tel").value,
-        cnpj: document.getElementById("cnpj").value,
+        name: getEl("nome").value,
+        email: getEl("email").value,
+        phoneNumber: getEl("tel").value,
+        cnpj: getEl("cnpj").value,
         article: reply.textContent
     };
     const response = await fetch(saveUrl, {
@@ -166,4 +168,9 @@ function trapFocus(e) {
 // delays execution for a few ms
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// gets an element by id
+function getEl(id, doc = document) {
+    return doc.getElementById(id);
 }
