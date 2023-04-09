@@ -5,7 +5,7 @@ const iframeId = "gpfy-frame";
 
 // autosize an iFrame based on its contents
 async function gpfyAutoSizeIframe(iframeId) {
-    const gpfy = await import(`${rootUrl}/js/gpfy.js`); // import gpfy module
+    const gpfy = await import(`${urlGpfy}/js/gpfy.js`); // import gpfy module
     gpfy.autoSizeIframe(iframeId); // auto-size the frame
 }
 
@@ -45,7 +45,7 @@ function gptReplied(e) {
     btnAsk.disabled = true;
     btnAsk.classList.add("d-none");
     const reply = getEl("reply", doc);
-    reply.textContent = reply.textContent.substr(0, 400) + "...";
+    reply.textContent = reply.textContent.substring(0, 400) + "...";
     reply.classList.remove("expose");
 
     // autosize the iframe to fit the truncated article
@@ -76,6 +76,7 @@ async function submitRequestForm(e) {
 
     // show article
     await sleep(600);
+    const iframe = getEl(iframeId);
     const doc = iframe.contentWindow.document;
     const reply = getEl("reply", doc);
     reply.textContent = form.detail.reply;
@@ -85,7 +86,7 @@ async function submitRequestForm(e) {
     gpfyAutoSizeIframe(iframeId);
 
     // save user's name and email
-    const saveUrl = `${rootUrl}/api/v1/adduser`;
+    const urlAddUser = `${urlGpfy}/api/v1/adduser`;
     const data = {
         name: getEl("nome").value,
         email: getEl("email").value,
@@ -93,7 +94,7 @@ async function submitRequestForm(e) {
         cnpj: getEl("cnpj").value,
         article: reply.textContent
     };
-    const response = await fetch(saveUrl, {
+    const response = await fetch(urlAddUser, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -102,7 +103,9 @@ async function submitRequestForm(e) {
     });
 
     // done!
-    await getConfirmation("Obrigado por usar GPFY!", "Aproveite o Artigo", true);
+    getEl("form-instructions").classList.add("d-none");
+    getEl("form-done").classList.remove("d-none");
+    await getConfirmation("Obrigado por usar o GPFY!", "Aproveite o Artigo", true);
 }
 
 // show a confirmation dialog
